@@ -1,0 +1,13 @@
+{
+  "version": "0",
+  "id": "53dc4d37-cffa-4c76-0000-EXAMPLE12345",
+  "detail-type": "Scheduled Event",
+  "source": "aws.events",
+  "account": "183900808320",
+  "time": "2025-08-15T09:00:00Z",
+  "region": "us-east-1",
+  "resources": [
+    "arn:aws:events:us-east-1:183900808320:rule/daily-stockout-check"
+  ],
+  "detail": {}
+}

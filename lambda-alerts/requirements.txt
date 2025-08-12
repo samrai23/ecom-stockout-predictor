@@ -1,0 +1,14 @@
+# Core AWS & Data Processing
+boto3>=1.28.0
+aws-lambda-powertools>=2.0.0
+
+# Redshift Connection
+psycopg2-binary>=2.9.6  # Lightweight PostgreSQL adapter
+pg8000>=1.30.0  # Pure-Python alternative
+
+# Environment Management
+python-dotenv>=1.0.0  # For local testing with .env files
+
+# Utilities
+pandas>=2.0.0  # For data manipulation (if needed)
+numpy>=1.24.0  # Required by pandas

@@ -1,0 +1,8 @@
+{
+  "model_params": {
+    "target_column": "daily_sales",
+    "max_runtime_minutes": 60,
+    "objective": "reg:squarederror"
+  },
+  "alert_threshold": 1.5
+}
