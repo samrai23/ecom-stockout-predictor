@@ -1,0 +1,82 @@
+{
+  "DashboardId": "stockout-analytics",
+  "Name": "E-Commerce Stockout Predictions",
+  "VersionDescription": "Initial version with sales vs demand forecast",
+  "Definition": {
+    "DataSetIdentifiers": [
+      {
+        "Identifier": "sales_features",
+        "DataSetArn": "arn:aws:quicksight:us-east-1:YOUR_ACCOUNT_ID:dataset/sales_features"
+      }
+    ],
+    "Sheets": [
+      {
+        "SheetId": "line-chart",
+        "Title": "Sales vs Predicted Demand",
+        "Visuals": [
+          {
+            "LineChartVisual": {
+              "VisualId": "sales-demand-line",
+              "Title": "Daily Sales vs Forecast",
+              "ChartConfiguration": {
+                "FieldWells": {
+                  "LineChartAggregatedFieldWells": {
+                    "Category": [{"DateDimensionField": {"FieldId": "sale_date"}}],
+                    "Values": [
+                      {"NumericalMeasureField": {"FieldId": "daily_sales"}},
+                      {"NumericalMeasureField": {"FieldId": "predicted_demand"}}
+                    ],
+                    "Colors": [{"CategoricalDimensionField": {"FieldId": "product_id"}}]
+                  }
+                },
+                "DataLabels": {"Visibility": "HIDDEN"},
+                "ForecastConfiguration": {"Enabled": true}
+              }
+            }
+          }
+        ]
+      },
+      {
+        "SheetId": "high-risk-table",
+        "Title": "High-Risk Products",
+        "Visuals": [
+          {
+            "PivotTableVisual": {
+              "VisualId": "high-risk-products",
+              "Title": "Products with Demand > 150% Supply",
+              "ChartConfiguration": {
+                "FieldWells": {
+                  "PivotTableFieldWells": {
+                    "Rows": [{"CategoricalDimensionField": {"FieldId": "product_id"}}],
+                    "Values": [
+                      {"NumericalMeasureField": {"FieldId": "daily_sales"}},
+                      {"NumericalMeasureField": {"FieldId": "predicted_demand"}},
+                      {"NumericalMeasureField": {
+                        "FieldId": "demand_ratio",
+                        "Expression": "predicted_demand/daily_sales"
+                      }}
+                    ]
+                  }
+                },
+                "ConditionalFormatting": {
+                  "ConditionalFormattingOptions": [
+                    {
+                      "Predicate": {
+                        "NumericalRange": {
+                          "LowerBound": 1.5,
+                          "UpperBound": 100,
+                          "IncludeLower": true
+                        }
+                      },
+                      "BackgroundColor": {"Solid": {"Color": "#FF0000"}}
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
