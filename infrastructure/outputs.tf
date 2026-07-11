@@ -28,3 +28,13 @@ output "redshift_credentials_secret_arn" {
   value       = aws_secretsmanager_secret.redshift_credentials.arn
   sensitive   = true
 }
+
+output "sns_topic_arn" {
+  description = "ARN of the SNS topic that receives stockout alerts"
+  value       = aws_sns_topic.stockout_alerts.arn
+}
+
+output "feature_engineering_job_name" {
+  description = "Name of the Glue feature-engineering job"
+  value       = aws_glue_job.feature_engineering.name
+}

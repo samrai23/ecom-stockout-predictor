@@ -28,8 +28,8 @@ This project predicts product stockouts using real-time sales data, AWS Glue ETL
 - **Dashboard** ([dashboards/stockout-dashboard.json](dashboards/stockout-dashboard.json)): Visualizes sales and predicted demand using AWS QuickSight.
 
 ## Infrastructure
-- **Terraform** ([infrastructure/main.tf](infrastructure/main.tf), [infrastructure/variables.tf](infrastructure/variables.tf), [infrastructure/outputs.tf](infrastructure/outputs.tf)): Provisions AWS resources (Kinesis, Glue, S3, Redshift, Lambda, IAM).
-- **CI/CD** ([.github/workflows/aws-deploy.yml](.github/workflows/aws-deploy.yml)): Automates deployment of ETL scripts, Lambda, and Redshift ML via GitHub Actions.
+- **Terraform** ([infrastructure/main.tf](infrastructure/main.tf), [infrastructure/variables.tf](infrastructure/variables.tf), [infrastructure/outputs.tf](infrastructure/outputs.tf)): Provisions AWS resources (Kinesis, Glue, S3, Redshift Serverless, Lambda, SNS, Secrets Manager, EventBridge, IAM), and uploads the Glue scripts and Lambda package to S3.
+- **Deployment**: Manual/scripted, not CI/CD. `terraform apply` provisions infrastructure; [redshift-ml/utils/deploy_ml.py](redshift-ml/utils/deploy_ml.py) runs the SQL files against the Redshift Serverless workgroup via the Redshift Data API.
 
 ## Data Flow
 

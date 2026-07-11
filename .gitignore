@@ -4,7 +4,13 @@ __pycache__/
 
 # Terraform
 .terraform/
+.terraform.lock.hcl
 *.tfstate
+*.tfstate.*
+infrastructure/build/
 
 # AWS
 *.awsconfig
+
+# Interview prep notes - pushed to a separate private repo, never this one
+notes/
